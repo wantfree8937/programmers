@@ -13,8 +13,8 @@ function solution(answers) {
   });
 
 result = scores
-  .map((score, index) => (score === Math.max(...scores) ? index + 1 : null))
-  .filter(index => index !== null);
+  .map((score, index) => (score === Math.max(...scores) ? index + 1 : 0))
+  .filter(index => index !== 0);
 
   return result;
 }
