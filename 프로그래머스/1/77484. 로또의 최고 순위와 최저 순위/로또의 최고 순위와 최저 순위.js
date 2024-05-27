@@ -4,5 +4,5 @@ function solution(lottos, win_nums) {
   let lowCount = win_nums.filter(num => lottos.includes(num)).length;
   let highCount = lottos.filter(zero => zero === 0).length;
 
-  return [rate[lowCount + highCount], highCount === 6 ? 6 : rate[lowCount]];
+  return [rate[lowCount + highCount], rate[lowCount]];
 }
