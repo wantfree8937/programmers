@@ -1,54 +1,19 @@
 function solution(wallpaper) {
-  const result = [];
-  let resultOne = wallpaper[0].length;
-  let resultTwo = 0;
-  let resultThree = 0;
+  let top = wallpaper.length
+  let left = wallpaper[0].length;
+  let bottom = 0
+  let right = 0;
 
-  for (let i = 0; i < 4; i++) {
-    if (i === 0) {
-      for (let j = 0; j < wallpaper.length; j++) {
-        if (wallpaper[j].includes("#")) {
-          result.push(j);
-          break;
-        }
-      }
+  wallpaper.forEach((row, i) => {
+    if (row.includes("#")) {
+      top = Math.min(top, i);
+      bottom = Math.max(bottom, i + 1);
+      left = Math.min(left, row.indexOf("#"));
+      right = Math.max(right, row.lastIndexOf("#") + 1);
     }
+  });
 
-    if (i === 1) {
-      for (let j = 0; j < wallpaper.length; j++) {
-        if (
-          wallpaper[j].includes("#") &&
-          wallpaper[j].indexOf("#") < resultOne
-        ) {
-          resultOne = wallpaper[j].indexOf("#");
-        }
-      }
-      result.push(resultOne);
-    }
-
-    if (i === 2) {
-      for (let j = 0; j < wallpaper.length; j++) {
-        if (wallpaper[j].includes("#")) {
-          resultTwo = j;
-        }
-      }
-      result.push(resultTwo + 1);
-    }
-
-    if (i === 3) {
-      for (let j = 0; j < wallpaper.length; j++) {
-        if (
-          wallpaper[j].includes("#") &&
-          wallpaper[j].lastIndexOf("#") > resultThree
-        ) {
-          resultThree = wallpaper[j].lastIndexOf("#");
-        }
-      }
-      result.push(resultThree + 1);
-    }
-  }
-
-  return result;
+  return [top, left, bottom, right];
 }
 
 // result
